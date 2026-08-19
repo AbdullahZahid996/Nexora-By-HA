@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nerxora By HA — Men's Fashion, Footwear &amp; Gym Essentials</title>
+<meta name="description" content="Nerxora By HA — premium men's clothing, shoes, glasses, caps and gym essentials. Founded by Abdullah Zahid and Muhammad Hilal. Style that speaks for you.">
+<meta name="theme-color" content="#111110">
+<meta property="og:title" content="Nerxora By HA">
+<meta property="og:description" content="Premium men's fashion, footwear, eyewear, headwear and gym essentials.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Nerxora By HA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23111110'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='58' font-weight='900' fill='%23D3AF77' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111110;
+    --ivory:#EDEAE1;
+    --ivory-dim:#DFDBCE;
+    --brass:#B08D57;
+    --brass-bright:#D3AF77;
+    --oxblood:#6E2A2A;
+    --stone:#8A8578;
+    --line: rgba(237,234,225,0.14);
+    --line-dark: rgba(17,17,16,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
+  body{
+    background:var(--ink);
+    color:var(--ivory);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+    width:100%;
+    position:relative;
+  }
+  h1,h2,h3, .display{
+    font-family:'Unbounded', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+    line-height:0.95;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--brass-bright);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--brass-bright);flex-shrink:0;}
+  section{position:relative;}
+  button, .btn{
+    font-family:'Space Grotesk', sans-serif;
+    cursor:pointer;
+    border:none;
+    font-weight:600;
+    background:none;
+    color:inherit;
+  }
+  button:focus-visible, a:focus-visible, input:focus-visible{
+    outline:2px solid var(--brass-bright);outline-offset:2px;
+  }
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky;top:0;z-index:80;
+    background:rgba(17,17,16,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:84px;position:relative;
+  }
+  .logo{
+    font-family:'Unbounded';font-weight:800;font-size:20px;letter-spacing:0.02em;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .logo span{color:var(--brass-bright);font-size:11px;font-weight:600;letter-spacing:0.15em;font-family:'IBM Plex Mono';}
+  .nav-links{display:flex;gap:34px;font-size:13.5px;letter-spacing:0.03em;text-transform:uppercase;font-weight:500;}
+  .nav-links a{opacity:0.78;transition:opacity .2s;}
+  .nav-links a:hover, .nav-links a:focus-visible{opacity:1;}
+  .nav-icons{display:flex;align-items:center;gap:20px;}
+  .nav-icons button{font-size:18px;position:relative;opacity:0.9;line-height:1;}
+  .nav-icons button:hover{opacity:1;color:var(--brass-bright);}
+  .cart-count{
+    position:absolute;top:-6px;right:-9px;background:var(--brass-bright);color:var(--ink);
+    font-size:9px;font-family:'IBM Plex Mono';width:15px;height:15px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-weight:500;
+  }
+  .wish-btn.active{color:var(--oxblood);}
+  .burger{display:none;font-size:22px;}
+
+  /* search overlay */
+  .search-panel{
+    position:absolute;top:100%;left:0;right:0;background:var(--ink);border-bottom:1px solid var(--line);
+    padding:20px 0;transform:translateY(-8px);opacity:0;pointer-events:none;transition:all .18s ease;
+  }
+  .search-panel.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+  .search-panel form{display:flex;gap:10px;max-width:640px;margin:0 auto;padding:0 40px;}
+  .search-panel input{flex:1;background:none;border:1px solid var(--line);padding:12px 16px;color:var(--ivory);font-family:'Space Grotesk';font-size:14px;}
+  .search-panel input::placeholder{color:var(--stone);}
+  .search-panel button{background:var(--brass-bright);color:var(--ink);padding:12px 20px;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;}
+
+  /* mobile menu */
+  .mobile-menu{
+    display:flex;position:fixed;inset:84px 0 0 0;background:var(--ink);z-index:70;
+    flex-direction:column;padding:30px 40px;gap:26px;overflow-y:auto;
+    transform:translateX(100%);transition:transform .25s ease;
+    visibility:hidden;
+  }
+  .mobile-menu.open{transform:translateX(0);visibility:visible;}
+  @media(min-width:981px){ .mobile-menu{display:none;} }
+  .mobile-menu a{font-family:'Unbounded';font-size:22px;text-transform:uppercase;}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:100px 0 60px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(circle at 85% 20%, rgba(176,141,87,0.14), transparent 45%),
+      var(--ink);
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:end;}
+  .hero-headline{
+    font-size:clamp(56px, 7.4vw, 108px);
+    font-weight:900;
+  }
+  .hero-headline .out{-webkit-text-stroke:1.5px var(--ivory);color:transparent;}
+  .hero-copy{
+    max-width:380px;color:var(--ivory);opacity:0.72;font-size:15.5px;line-height:1.65;
+    margin:26px 0 34px;
+  }
+  .hero-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--brass-bright);color:var(--ink);padding:16px 32px;
+    font-size:13.5px;text-transform:uppercase;letter-spacing:0.06em;
+    transition:transform .2s;display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    padding:16px 8px;
+    font-size:13.5px;text-transform:uppercase;letter-spacing:0.06em;
+    border-bottom:1px solid var(--ivory);display:inline-block;
+  }
+  .hero-visual{
+    aspect-ratio:3/4;position:relative;border:1px solid var(--line);
+    background:
+      repeating-linear-gradient(135deg, rgba(237,234,225,0.035) 0 2px, transparent 2px 26px),
+      linear-gradient(190deg, #1c1b18, #0b0b0a);
+    display:flex;align-items:flex-end;padding:26px;
+    overflow:hidden;
+  }
+  .hero-visual::before{
+    content:"HA";position:absolute;top:-40px;right:-20px;
+    font-family:'Unbounded';font-weight:900;font-size:280px;color:rgba(237,234,225,0.045);
+    line-height:1;
+  }
+  .hero-visual-tag{
+    position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;width:100%;
+  }
+  .hero-visual-tag .mono{font-size:11px;color:var(--stone);letter-spacing:0.08em;}
+  .hero-visual-tag .price{font-family:'Unbounded';font-size:22px;font-weight:800;color:var(--brass-bright);}
+
+  .hero-stats{border-top:1px solid var(--line);margin-top:56px;}
+  .hero-stats .wrap{display:flex;padding:0;gap:0;}
+  .stat{flex:1;padding:22px 40px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat b{font-family:'Unbounded';font-size:26px;display:block;color:var(--brass-bright);}
+  .stat span{font-size:12px;color:var(--stone);text-transform:uppercase;letter-spacing:0.06em;}
+
+  /* ===== TRUST BAR ===== */
+  .trust{
+    background:var(--ivory);color:var(--ink);padding:22px 0;
+    border-bottom:1px solid var(--line-dark);
+  }
+  .trust .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;}
+  .trust-item .dot{width:6px;height:6px;background:var(--oxblood);border-radius:50%;flex-shrink:0;}
+
+  /* ===== SECTION HEAD ===== */
+  .sec{padding:110px 0;}
+  .sec-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:56px;gap:40px;flex-wrap:wrap;
+  }
+  .sec-head h2{font-size:clamp(34px,4vw,52px);}
+  .sec-head p{max-width:340px;color:var(--stone);font-size:14.5px;line-height:1.6;}
+
+  /* ===== CATEGORIES ===== */
+  .categories{border-bottom:1px solid var(--line);}
+  .cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .cat-card{
+    background:var(--ink);padding:32px 22px;min-height:280px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;overflow:hidden;transition:background .25s;text-align:left;width:100%;
+  }
+  .cat-card:hover, .cat-card:focus-visible{background:#1a1917;}
+  .cat-card.active{background:#1a1917;box-shadow:inset 0 0 0 1px var(--brass-bright);}
+  .cat-card.active .cat-link{color:var(--brass-bright);}
+  .cat-num{font-family:'IBM Plex Mono';font-size:11px;color:var(--stone);}
+  .cat-letter{
+    font-family:'Unbounded';font-weight:900;font-size:90px;color:rgba(237,234,225,0.05);
+    position:absolute;bottom:-10px;right:-6px;line-height:1;
+  }
+  .cat-name{font-family:'Unbounded';font-weight:600;font-size:19px;text-transform:uppercase;margin-top:20px;position:relative;z-index:2;}
+  .cat-link{font-size:12px;color:var(--brass-bright);margin-top:14px;display:flex;align-items:center;gap:6px;position:relative;z-index:2;}
+
+  /* ===== PRODUCTS ===== */
+  .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .product-card{border:1px solid var(--line);}
+  .product-img{
+    aspect-ratio:4/5;position:relative;
+    background:linear-gradient(160deg,#1d1c19,#0d0d0c);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .product-img span.wm{
+    font-family:'Unbounded';font-weight:900;font-size:64px;color:rgba(237,234,225,0.06);
+  }
+  .tag{
+    position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono';font-size:10px;
+    padding:5px 10px;text-transform:uppercase;letter-spacing:0.05em;
+  }
+  .tag.new{background:var(--brass-bright);color:var(--ink);}
+  .tag.best{background:var(--oxblood);color:var(--ivory);}
+  .tag.sold{background:var(--stone);color:var(--ink);}
+  .wish-btn{
+    position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;
+    background:rgba(17,17,16,0.55);color:var(--ivory);display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);font-size:14px;
+  }
+  .product-info{padding:18px 16px 20px;}
+  .product-cat{font-size:11px;color:var(--stone);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+  .product-name{font-family:'Unbounded';font-size:14.5px;font-weight:600;text-transform:uppercase;margin-bottom:10px;}
+  .product-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .price{font-family:'IBM Plex Mono';font-size:15px;color:var(--brass-bright);}
+  .stars{font-size:11px;color:var(--stone);}
+  .add-cart{
+    width:100%;border:1px solid var(--line);padding:11px;font-size:12px;text-transform:uppercase;
+    letter-spacing:0.06em;transition:all .2s;
+  }
+  .add-cart:hover{background:var(--brass-bright);color:var(--ink);border-color:var(--brass-bright);}
+  .add-cart[disabled]{opacity:0.4;cursor:not-allowed;}
+  .add-cart[disabled]:hover{background:none;color:var(--ivory);border-color:var(--line);}
+  .filter-empty{display:none;text-align:center;color:var(--stone);font-size:14px;padding:50px 0;}
+  .filter-empty.show{display:block;}
+  .product-card.hide{display:none;}
+  .filter-clear{
+    font-family:'IBM Plex Mono';font-size:11px;color:var(--brass-bright);text-transform:uppercase;
+    letter-spacing:0.05em;margin-left:10px;text-decoration:underline;
+  }
+
+  /* ===== ABOUT / FOUNDERS ===== */
+  .about{background:var(--ivory);color:var(--ink);}
+  .about .eyebrow{color:var(--oxblood);}
+  .about .eyebrow::before{background:var(--oxblood);}
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;align-items:center;}
+  .founders-visual{
+    aspect-ratio:1/1;border:1px solid var(--line-dark);position:relative;
+    background:repeating-linear-gradient(45deg, rgba(17,17,16,0.04) 0 2px, transparent 2px 22px);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .founder-tags{display:flex;gap:16px;}
+  .founder-tag{
+    background:var(--ink);color:var(--ivory);padding:22px 20px;width:150px;text-align:center;
+  }
+  .founder-tag .initials{font-family:'Unbounded';font-weight:800;font-size:26px;color:var(--brass-bright);margin-bottom:8px;}
+  .founder-tag .name{font-size:12.5px;font-weight:600;}
+  .founder-tag .role{font-size:10.5px;color:var(--stone);margin-top:3px;text-transform:uppercase;letter-spacing:0.04em;}
+  .about-body h2{font-size:clamp(32px,4vw,46px);margin-bottom:22px;}
+  .about-body p{font-size:15.5px;line-height:1.75;color:#3a3833;max-width:520px;margin-bottom:16px;}
+  .about-sign{margin-top:28px;font-family:'Unbounded';font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;}
+
+  /* ===== WHY CHOOSE US ===== */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .why-card{background:var(--ink);padding:36px 30px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;}
+  .why-num{font-family:'IBM Plex Mono';color:var(--brass-bright);font-size:12px;}
+  .why-title{font-family:'Unbounded';font-weight:600;font-size:17px;text-transform:uppercase;margin:18px 0 8px;}
+  .why-desc{font-size:13.5px;color:var(--stone);line-height:1.6;}
+
+  /* ===== TESTIMONIALS ===== */
+  .testi-strip{
+    display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow-x:auto;
+  }
+  .testi-card{
+    min-width:340px;flex:1;padding:44px 40px;border-right:1px solid var(--line);
+  }
+  .testi-stars{color:var(--brass-bright);font-size:13px;letter-spacing:2px;margin-bottom:18px;}
+  .testi-quote{font-size:15px;line-height:1.65;color:var(--ivory);opacity:0.85;margin-bottom:24px;min-height:95px;}
+  .testi-who{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{
+    width:38px;height:38px;border-radius:50%;background:var(--brass);
+    display:flex;align-items:center;justify-content:center;font-family:'Unbounded';font-size:12px;font-weight:700;color:var(--ink);
+  }
+  .testi-name{font-size:13px;font-weight:600;}
+  .testi-loc{font-size:11px;color:var(--stone);}
+
+  /* ===== CONTACT / VISIT ===== */
+  .contact{border-bottom:1px solid var(--line);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+  .contact-info h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:20px;}
+  .contact-info>p{color:var(--stone);font-size:14.5px;line-height:1.65;max-width:420px;margin-bottom:34px;}
+  .info-row{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line);}
+  .info-row:last-of-type{border-bottom:1px solid var(--line);}
+  .info-icon{
+    width:38px;height:38px;border:1px solid var(--line);border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--brass-bright);
+  }
+  .info-label{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--stone);margin-bottom:4px;}
+  .info-val{font-size:14.5px;}
+  .info-val a:hover{color:var(--brass-bright);}
+  .map-box{
+    margin-top:30px;border:1px solid var(--line);aspect-ratio:16/9;
+    background:repeating-linear-gradient(45deg, rgba(237,234,225,0.03) 0 2px, transparent 2px 20px);
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;
+  }
+  .map-box p{font-family:'IBM Plex Mono';font-size:11.5px;color:var(--stone);letter-spacing:0.04em;}
+
+  .contact-form{border:1px solid var(--line);padding:36px;}
+  .contact-form h3{font-size:18px;margin-bottom:22px;text-transform:uppercase;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--stone);margin-bottom:8px;}
+  .field input, .field textarea{
+    width:100%;background:none;border:1px solid var(--line);padding:13px 14px;color:var(--ivory);
+    font-family:'Space Grotesk';font-size:14px;resize:vertical;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:#5c584f;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .form-error{font-size:12px;color:#e08383;margin-top:6px;display:none;}
+  .form-error.show{display:block;}
+  .form-submit{
+    width:100%;background:var(--brass-bright);color:var(--ink);padding:15px;
+    font-size:13px;text-transform:uppercase;letter-spacing:0.06em;margin-top:6px;
+  }
+  .form-success{
+    display:none;background:rgba(211,175,119,0.12);border:1px solid var(--brass-bright);
+    padding:14px 16px;font-size:13px;color:var(--brass-bright);margin-top:16px;
+  }
+  .form-success.show{display:block;}
+
+  /* ===== NEWSLETTER ===== */
+  .newsletter{
+    padding:100px 0;text-align:center;position:relative;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(176,141,87,0.18), transparent 60%),
+      var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .newsletter h2{font-size:clamp(32px,5vw,58px);max-width:700px;margin:0 auto 16px;}
+  .newsletter>.wrap>p{color:var(--stone);font-size:14.5px;margin-bottom:34px;}
+  .news-form{display:flex;max-width:440px;margin:0 auto;border:1px solid var(--line);}
+  .news-form input{
+    flex:1;background:none;border:none;padding:16px 20px;color:var(--ivory);font-size:14px;font-family:'Space Grotesk';min-width:0;
+  }
+  .news-form input::placeholder{color:var(--stone);}
+  .news-form input:focus{outline:none;}
+  .news-form button{background:var(--brass-bright);color:var(--ink);padding:16px 26px;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;}
+  .news-perk{margin-top:18px;font-family:'IBM Plex Mono';font-size:11.5px;color:var(--brass-bright);letter-spacing:0.04em;}
+  .news-msg{margin-top:14px;font-size:12.5px;color:var(--brass-bright);display:none;}
+  .news-msg.show{display:block;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:80px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:60px;border-bottom:1px solid var(--line);}
+  .foot-brand p{color:var(--stone);font-size:13.5px;line-height:1.7;margin:18px 0 22px;max-width:260px;}
+  .foot-social{display:flex;gap:12px;}
+  .foot-social a{
+    width:34px;height:34px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:12px;
+  }
+  .foot-social a:hover{border-color:var(--brass-bright);color:var(--brass-bright);}
+  .foot-col h4{font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--stone);margin-bottom:18px;font-weight:600;}
+  .foot-col a{display:block;font-size:13.5px;color:var(--ivory);opacity:0.82;margin-bottom:12px;}
+  .foot-col a:hover{opacity:1;color:var(--brass-bright);}
+  .foot-contact p{font-size:13.5px;color:var(--ivory);opacity:0.82;margin-bottom:10px;}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px;
+  }
+  .foot-bottom p{font-size:12px;color:var(--stone);}
+  .foot-legal{display:flex;gap:22px;font-size:12px;color:var(--stone);flex-wrap:wrap;}
+
+  /* whatsapp float button */
+  .wa-float{
+    position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;
+    background:var(--brass-bright);color:var(--ink);display:flex;align-items:center;justify-content:center;
+    font-size:24px;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,0.35);
+  }
+  .wa-float:hover{transform:scale(1.06);}
+
+  @media(max-width:980px){
+    .wrap{padding:0 22px;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-visual{max-width:340px;}
+    .nav-links{display:none;}
+    .burger{display:block;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .about-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .hero-stats .wrap{flex-direction:column;}
+    .stat{border-right:none;border-bottom:1px solid var(--line);}
+    .contact-grid{grid-template-columns:1fr;gap:50px;}
+    .field-row{grid-template-columns:1fr;}
+    .search-panel form{padding:0 22px;}
+  }
+  @media(max-width:520px){
+    .product-grid{grid-template-columns:1fr;}
+    .cat-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">NERXORA <span>BY HA</span></a>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <button aria-label="Toggle search" id="searchToggle" aria-expanded="false">&#9906;</button>
+      <button aria-label="Toggle wishlist" class="wish-btn" id="navWish">&#9825;<span class="sr-only">Wishlist</span></button>
+      <button aria-label="Account">&#9788;</button>
+      <button aria-label="Cart, 0 items" id="navCart">&#128717;<span class="cart-count" id="cartCount">0</span></button>
+      <button aria-label="Open menu" class="burger" id="menuToggle" aria-expanded="false">&#9776;</button>
+    </div>
+    <div class="search-panel" id="searchPanel">
+      <form id="searchForm">
+        <label class="sr-only" for="searchInput">Search products</label>
+        <input type="text" id="searchInput" placeholder="Search hoodies, sneakers, caps..." required>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#shop">Shop</a>
+  <a href="#categories">Categories</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Founded by Abdullah Zahid &amp; Muhammad Hilal</div>
+      <h1 class="hero-headline">STYLE<br>THAT <span class="out">SPEAKS</span><br>FOR YOU</h1>
+      <p class="hero-copy">Clothing, footwear, eyewear, headwear and gym essentials — built for men who move with intention. This is Nerxora By HA.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary btn" href="#shop">Shop Now</a>
+        <a class="btn-ghost btn" href="#categories">View Categories</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-tag">
+        <span class="mono">FLAGSHIP HOODIE / ONYX</span>
+        <span class="price">$64</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="wrap">
+      <div class="stat"><b>05</b><span>Product Lines</span></div>
+      <div class="stat"><b>7-Day</b><span>Easy Returns</span></div>
+      <div class="stat"><b>100%</b><span>Verified Authentic</span></div>
+      <div class="stat"><b>24/7</b><span>Support On WhatsApp</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-item"><span class="dot"></span>Free shipping over $60</div>
+    <div class="trust-item"><span class="dot"></span>Easy 7-day returns</div>
+    <div class="trust-item"><span class="dot"></span>100% authentic products</div>
+    <div class="trust-item"><span class="dot"></span>Secure checkout</div>
+  </div>
+</section>
+
+<section class="sec categories" id="categories">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Shop By<br>Category</h2>
+      <p>Five essential lines, one wardrobe. Everything a man needs to dress, move and carry himself with intent.</p>
+    </div>
+  </div>
+  <div class="cat-grid">
+    <button class="cat-card" data-cat="Clothing"><div class="cat-num">01 / CLOTHING</div><div class="cat-letter">C</div><div><div class="cat-name">Clothing</div><div class="cat-link">Shop Now &rarr;</div></div></button>
+    <button class="cat-card" data-cat="Shoes"><div class="cat-num">02 / SHOES</div><div class="cat-letter">S</div><div><div class="cat-name">Shoes</div><div class="cat-link">Shop Now &rarr;</div></div></button>
+    <button class="cat-card" data-cat="Glasses"><div class="cat-num">03 / GLASSES</div><div class="cat-letter">G</div><div><div class="cat-name">Glasses</div><div class="cat-link">Shop Now &rarr;</div></div></button>
+    <button class="cat-card" data-cat="Caps"><div class="cat-num">04 / CAPS</div><div class="cat-letter">C</div><div><div class="cat-name">Caps</div><div class="cat-link">Shop Now &rarr;</div></div></button>
+    <button class="cat-card" data-cat="Gym Wear"><div class="cat-num">05 / GYM</div><div class="cat-letter">G</div><div><div class="cat-name">Gym Wear</div><div class="cat-link">Shop Now &rarr;</div></div></button>
+  </div>
+</section>
+
+<section class="sec" id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="shopTitle">Best Sellers</h2>
+      <p id="shopSubtitle">The pieces our customers keep coming back for. Restocked weekly. <button class="filter-clear" id="filterClear" type="button" style="display:none;">&times; Clear filter</button></p>
+    </div>
+    <div class="product-grid" id="productGrid">
+      <div class="product-card" data-cat="Clothing">
+        <div class="product-img"><span class="tag best">Best Seller</span><button class="wish-btn" aria-label="Add to wishlist">&#9825;</button><span class="wm">N</span></div>
+        <div class="product-info">
+          <div class="product-cat">Clothing</div>
+          <div class="product-name">Onyx Oversized Hoodie</div>
+          <div class="product-row"><span class="price">$64.00</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; (128)</span></div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+      <div class="product-card" data-cat="Shoes">
+        <div class="product-img"><span class="tag new">New</span><button class="wish-btn" aria-label="Add to wishlist">&#9825;</button><span class="wm">N</span></div>
+        <div class="product-info">
+          <div class="product-cat">Shoes</div>
+          <div class="product-name">Ridge Low Sneaker</div>
+          <div class="product-row"><span class="price">$89.00</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; (64)</span></div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+      <div class="product-card" data-cat="Glasses">
+        <div class="product-img"><button class="wish-btn" aria-label="Add to wishlist">&#9825;</button><span class="wm">N</span></div>
+        <div class="product-info">
+          <div class="product-cat">Glasses</div>
+          <div class="product-name">Drift Sunglasses</div>
+          <div class="product-row"><span class="price">$32.00</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; (91)</span></div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+      <div class="product-card" data-cat="Caps">
+        <div class="product-img"><span class="tag sold">Sold Out</span><button class="wish-btn" aria-label="Add to wishlist">&#9825;</button><span class="wm">N</span></div>
+        <div class="product-info">
+          <div class="product-cat">Caps</div>
+          <div class="product-name">HA Signature Cap</div>
+          <div class="product-row"><span class="price">$24.00</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; (203)</span></div>
+          <button class="add-cart" disabled>Sold Out</button>
+        </div>
+      </div>
+      <div class="product-card" data-cat="Gym Wear">
+        <div class="product-img"><span class="tag new">New</span><button class="wish-btn" aria-label="Add to wishlist">&#9825;</button><span class="wm">N</span></div>
+        <div class="product-info">
+          <div class="product-cat">Gym Wear</div>
+          <div class="product-name">Forge Training Tee</div>
+          <div class="product-row"><span class="price">$28.00</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; (57)</span></div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+    <p class="filter-empty" id="filterEmpty">No products match that filter yet — check back soon or browse another category.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap sec">
+    <div class="about-grid">
+      <div class="founders-visual">
+        <div class="founder-tags">
+          <div class="founder-tag">
+            <div class="initials">AZ</div>
+            <div class="name">Abdullah Zahid</div>
+            <div class="role">Co-Founder</div>
+          </div>
+          <div class="founder-tag">
+            <div class="initials">MH</div>
+            <div class="name">Muhammad Hilal</div>
+            <div class="role">Co-Founder</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-body">
+        <div class="eyebrow">Our Story</div>
+        <h2>Built by two guys<br>who got tired of<br>settling.</h2>
+        <p>Nerxora By HA started with Abdullah Zahid and Muhammad Hilal asking a simple question: why should men choose between quality and affordability?</p>
+        <p>So they built a brand that doesn't. Every hoodie, sneaker, frame and cap carries the same standard — made to be worn hard, look sharp, and last.</p>
+        <div class="about-sign">— AZ &amp; MH, Founders</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Why Nerxora</h2>
+      <p>The standards we hold every product to, before it ever reaches your cart.</p>
+    </div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-num">01</div><div><div class="why-title">Premium Quality</div><div class="why-desc">Fabrics and materials tested for durability, not just looks.</div></div></div>
+    <div class="why-card"><div class="why-num">02</div><div><div class="why-title">Fast Shipping</div><div class="why-desc">Orders processed within 24 hours, tracked door to door.</div></div></div>
+    <div class="why-card"><div class="why-num">03</div><div><div class="why-title">Fair Pricing</div><div class="why-desc">Premium standards without the premium markup.</div></div></div>
+    <div class="why-card"><div class="why-num">04</div><div><div class="why-title">Trend-Led Design</div><div class="why-desc">New drops shaped by what men actually want to wear.</div></div></div>
+    <div class="why-card"><div class="why-num">05</div><div><div class="why-title">Easy Returns</div><div class="why-desc">7-day no-questions returns on every single order.</div></div></div>
+    <div class="why-card"><div class="why-num">06</div><div><div class="why-title">Real Support</div><div class="why-desc">A human on WhatsApp, not a chatbot loop.</div></div></div>
+  </div>
+</section>
+
+<section class="testi-strip">
+  <div class="testi-card">
+    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div class="testi-quote">Fit was perfect and the hoodie fabric feels way more premium than the price. Reordered in two colors already.</div>
+    <div class="testi-who"><div class="testi-avatar">R</div><div><div class="testi-name">Rayyan K.</div><div class="testi-loc">Verified Buyer</div></div></div>
+  </div>
+  <div class="testi-card">
+    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div class="testi-quote">Delivery was quick and the sneakers looked exactly like the photos. Sizing guide was actually accurate too.</div>
+    <div class="testi-who"><div class="testi-avatar">F</div><div><div class="testi-name">Fahad M.</div><div class="testi-loc">Verified Buyer</div></div></div>
+  </div>
+  <div class="testi-card">
+    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+    <div class="testi-quote">Cap is solid quality, exchanged the size through WhatsApp in minutes. Easiest return I've had with any brand.</div>
+    <div class="testi-who"><div class="testi-avatar">B</div><div><div class="testi-name">Bilal S.</div><div class="testi-loc">Verified Buyer</div></div></div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="eyebrow">Get In Touch</div>
+        <h2 style="margin-top:16px;">Visit Or<br>Reach Us</h2>
+        <p>Questions about an order, sizing, or a return? Our team replies within a few hours, every day of the week.</p>
+
+        <div class="info-row">
+          <div class="info-icon">&#128205;</div>
+          <div>
+            <div class="info-label">Store Address</div>
+            <div class="info-val">Shop 14, Fashion Plaza, University Road,<br>Peshawar, Khyber Pakhtunkhwa, Pakistan</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">&#9993;</div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-val"><a href="mailto:hello@nerxorabyha.com">hello@nerxorabyha.com</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">&#9742;</div>
+          <div>
+            <div class="info-label">Phone / WhatsApp</div>
+            <div class="info-val"><a href="tel:+923000000000">+92 300 0000000</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">&#128337;</div>
+          <div>
+            <div class="info-label">Hours</div>
+            <div class="info-val">Mon – Sat, 11:00 AM – 9:00 PM PKT</div>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <p>MAP EMBED PLACEHOLDER<br>Replace with your Google Maps iframe embed code</p>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <h3>Send A Message</h3>
+        <div class="field-row">
+          <div class="field">
+            <label for="cName">Full name</label>
+            <input type="text" id="cName" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="cEmail">Email</label>
+            <input type="email" id="cEmail" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="cSubject">Subject</label>
+          <input type="text" id="cSubject" placeholder="Order, sizing, return..." required>
+        </div>
+        <div class="field">
+          <label for="cMessage">Message</label>
+          <textarea id="cMessage" rows="4" placeholder="How can we help?" required></textarea>
+        </div>
+        <div class="form-error" id="formError">Please fill in every field with a valid email before sending.</div>
+        <button type="submit" class="form-submit">Send Message</button>
+        <div class="form-success" id="formSuccess">Thanks — your message has been noted. We'll reply by email shortly.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Join The Movement</div>
+    <h2 style="margin-top:18px;">Get 10% off<br>your first order</h2>
+    <p>New drops, restocks and offers — straight to your inbox, no spam.</p>
+    <form class="news-form" id="newsForm">
+      <label class="sr-only" for="newsEmail">Email address</label>
+      <input type="email" id="newsEmail" placeholder="you@email.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="news-msg" id="newsMsg">You're in — check your inbox for the code.</div>
+    <div class="news-perk">USE CODE NERXORA10 AT CHECKOUT</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">NERXORA <span>BY HA</span></div>
+        <p>Men's fashion and lifestyle essentials, founded by Abdullah Zahid and Muhammad Hilal. Style that speaks for you.</p>
+        <div class="foot-social">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <a href="#categories">Clothing</a>
+        <a href="#categories">Shoes</a>
+        <a href="#categories">Glasses</a>
+        <a href="#categories">Caps</a>
+        <a href="#categories">Gym Wear</a>
+      </div>
+      <div class="foot-col">
+        <h4>Support</h4>
+        <a href="#contact">Track My Order</a>
+        <a href="#contact">Size Guide</a>
+        <a href="#contact">FAQs</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Return &amp; Refund Policy</a>
+      </div>
+      <div class="foot-col foot-contact">
+        <h4>Get In Touch</h4>
+        <p>Shop 14, Fashion Plaza, University Road,<br>Peshawar, Pakistan</p>
+        <p><a href="mailto:hello@nerxorabyha.com">hello@nerxorabyha.com</a></p>
+        <p><a href="tel:+923000000000">+92 300 0000000</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; 2026 Nerxora By HA. All rights reserved.</p>
+      <div class="foot-legal">
+        <span class="mono">SSL SECURED</span>
+        <span class="mono">COD AVAILABLE</span>
+        <span class="mono">EASYPAISA / JAZZCASH</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/923000000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">&#9742;</a>
+
+<script>
+(function(){
+  var cartCount = 0;
+  var cartCountEl = document.getElementById('cartCount');
+
+  function bump(){
+    cartCount++;
+    cartCountEl.textContent = cartCount;
+    document.getElementById('navCart').setAttribute('aria-label','Cart, '+cartCount+' items');
+  }
+
+  document.querySelectorAll('.add-cart:not([disabled])').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      bump();
+      var original = btn.textContent;
+      btn.textContent = 'Added ✓';
+      setTimeout(function(){ btn.textContent = original; }, 1400);
+    });
+  });
+
+  document.querySelectorAll('.wish-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('active');
+      btn.innerHTML = btn.classList.contains('active') ? '&#9829;' : '&#9825;';
+    });
+  });
+
+  var productCards = Array.prototype.slice.call(document.querySelectorAll('.product-card'));
+  var filterEmpty = document.getElementById('filterEmpty');
+  var shopTitle = document.getElementById('shopTitle');
+  var filterClear = document.getElementById('filterClear');
+  var catCards = document.querySelectorAll('.cat-card');
+
+  function applyFilter(cat, query){
+    var visibleCount = 0;
+    productCards.forEach(function(card){
+      var matchesCat = !cat || card.getAttribute('data-cat') === cat;
+      var matchesQuery = !query || card.querySelector('.product-name').textContent.toLowerCase().indexOf(query) !== -1
+        || card.getAttribute('data-cat').toLowerCase().indexOf(query) !== -1;
+      var show = matchesCat && matchesQuery;
+      card.classList.toggle('hide', !show);
+      if(show) visibleCount++;
+    });
+    filterEmpty.classList.toggle('show', visibleCount === 0);
+  }
+
+  function setActiveCategory(cat){
+    catCards.forEach(function(c){
+      c.classList.toggle('active', cat && c.getAttribute('data-cat') === cat);
+    });
+    if(cat){
+      shopTitle.textContent = cat;
+      filterClear.style.display = 'inline';
+    } else {
+      shopTitle.textContent = 'Best Sellers';
+      filterClear.style.display = 'none';
+    }
+  }
+
+  var currentCat = '';
+  catCards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var cat = card.getAttribute('data-cat');
+      currentCat = (currentCat === cat) ? '' : cat;
+      setActiveCategory(currentCat);
+      applyFilter(currentCat, '');
+      document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  filterClear.addEventListener('click', function(){
+    currentCat = '';
+    setActiveCategory('');
+    applyFilter('', '');
+  });
+
+  var searchToggle = document.getElementById('searchToggle');
+  var searchPanel = document.getElementById('searchPanel');
+  searchToggle.addEventListener('click', function(){
+    var isOpen = searchPanel.classList.toggle('open');
+    searchToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if(isOpen){
+      document.getElementById('searchInput').focus();
+    }
+  });
+  document.getElementById('searchForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = document.getElementById('searchInput').value.trim().toLowerCase();
+    if(!q) return;
+    currentCat = '';
+    setActiveCategory('');
+    applyFilter('', q);
+    searchPanel.classList.remove('open');
+    searchToggle.setAttribute('aria-expanded', 'false');
+    document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+  });
+
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  menuToggle.addEventListener('click', function(){
+    var isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileMenu.classList.remove('open');
+      menuToggle.innerHTML = '&#9776;';
+    });
+  });
+
+  var newsForm = document.getElementById('newsForm');
+  var newsMsg = document.getElementById('newsMsg');
+  newsForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('newsEmail').value.trim();
+    if(!email || !email.includes('@')) return;
+    newsMsg.classList.add('show');
+    newsForm.reset();
+  });
+
+  var contactForm = document.getElementById('contactForm');
+  var formError = document.getElementById('formError');
+  var formSuccess = document.getElementById('formSuccess');
+  contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('cName').value.trim();
+    var email = document.getElementById('cEmail').value.trim();
+    var subject = document.getElementById('cSubject').value.trim();
+    var message = document.getElementById('cMessage').value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!name || !emailOk || !subject || !message){
+      formError.classList.add('show');
+      formSuccess.classList.remove('show');
+      return;
+    }
+    formError.classList.remove('show');
+    formSuccess.classList.add('show');
+    contactForm.reset();
+  });
+})();
+</script>
+
+</body>
+</html>
